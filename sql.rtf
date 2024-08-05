@@ -1,0 +1,20 @@
+// Copy this to sql workbench
+create stock_management;
+use stock_management;
+CREATE TABLE IF NOT EXISTS Stocks (
+    Symbol VARCHAR(10) PRIMARY KEY,
+    Name VARCHAR(255),
+    CurrentPrice DECIMAL(15, 2),
+    HighPrice DECIMAL(15, 2),
+    LowPrice DECIMAL(15, 2),
+    OpenPrice DECIMAL(15, 2),
+    PreviousClose DECIMAL(15, 2)
+);
+CREATE TABLE IF NOT EXISTS Transactions (
+    TransactionID INT AUTO_INCREMENT PRIMARY KEY,
+    Symbol VARCHAR(10),
+    TransactionType ENUM('buy', 'sell'),
+    Quantity INT,
+    Price DECIMAL(15, 2),
+    FOREIGN KEY (Symbol) REFERENCES Stocks(Symbol)
+);
